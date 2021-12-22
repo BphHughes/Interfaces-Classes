@@ -1,0 +1,59 @@
+using System;
+
+namespace SavingInterface
+{
+  class TodoList : IDisplayable, IResetable
+  {
+    //automatic property of string array name Todos
+    public string[] Todos
+    { get; private set; }
+
+    public string HeaderSymbol
+    { get; private set;}
+
+    //field for int named nextOpenIndex
+    private int nextOpenIndex;
+
+    //parameterless constructor for TodoList() which creates a string array of 5 elements and sets int nextOpenIndex to 0
+    public TodoList()
+    {
+      HeaderSymbol = "*---------*";
+      Todos = new string[5];
+      nextOpenIndex = 0;
+    }
+
+    //method Add with 1 string parameter that allows users to input a todo activity and fills in the empty array Todos created in the constructor. Adds 1 to nextOpenIndex every time.
+    public void Add(string todo)
+    {
+      if (nextOpenIndex < 5)
+      {
+        Todos[nextOpenIndex] = todo;
+        nextOpenIndex++;
+      }
+      else
+      {
+        Console.WriteLine($"\nItem: '{todo}' could not be added as list has reached size limit.");
+      }
+      
+    }
+
+    public void Display()
+    {
+     Console.WriteLine($"\n{HeaderSymbol} \nTo-Do List: "); 
+     for (int i=0 ; i < nextOpenIndex ; i++)
+      {
+        Console.WriteLine($"- {Todos[i]}");
+      } 
+    }
+
+    public void Reset()
+      {
+        Todos = new string[5];
+        nextOpenIndex = 0;
+      }
+
+
+
+
+  }
+}
