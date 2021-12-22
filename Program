@@ -1,0 +1,53 @@
+using System;
+
+namespace SavingInterface
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      TodoList tdl = new TodoList();
+      tdl.Add("Invite friends");
+      tdl.Add("Buy decorations");
+      tdl.Add("Booze");
+      tdl.Add("HOOVER!");
+      tdl.Add("Party");
+      tdl.Add("More booze");
+
+     PasswordManager pm = new PasswordManager("mrlubbalubba", false);
+
+      tdl.Display();
+      
+      /*
+      returns: 
+      *---------* 
+      To-Do List: 
+      - Invite friends
+      - Buy decorations
+      - Booze
+      - HOOVER!
+      - Party */
+      
+      
+      pm.Display(); 
+      /* returns
+      *-------* 
+      Password:
+      mrlubbalubba */
+
+      
+      Console.WriteLine($"\nPassword change attempt: {pm.ChangePassword("mrlubbalubba", "newhhhhhhh")}");
+      //returns: Password change attempt: True
+
+
+      pm.Display();
+      //returns 
+      *-------* 
+      Password:
+      **********
+
+ 
+
+    }
+  }
+}
